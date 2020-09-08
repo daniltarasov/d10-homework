@@ -1,0 +1,5 @@
+[08Sep 19:09:54] INFO [django.utils.autoreload:597] Watching for file changes with StatReloader
+[08Sep 19:10:07] DEBUG [cars.views:37] query_dict (name): {'manufacturer': 'Opel'}
+[08Sep 19:10:07] DEBUG [cars.views:37] query_dict (verbose_name): {'Производитель': 'Opel'}
+[08Sep 19:10:07] INFO [cars.views:57] User.id: 1. Результатов поиска: 1
+[08Sep 19:12:13] INFO [django.utils.autoreload:597] Watching for file changes with StatReloader

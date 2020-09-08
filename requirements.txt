@@ -1,0 +1,8 @@
+whitenoise==4.1.4
+Django==2.2.6
+django-crispy-forms==1.9.2
+django-debug-toolbar==2.2
+Pillow==7.2.0
+q==2.6
+sentry-sdk==0.17.3
+whitenoise==5.2.0

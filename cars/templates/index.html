@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container-fluid">
+   
+    {% if no_search %}
+    <br>
+    <h5>Параметры автомобиля для поиска</h5>
+    <form method="get" style='line-height: 0.5'>
+            <div class="row" >
+            
+              <div class="col-lg-2 col-md-3 col-sm-4" style = 'margin-top: 10px'>
+                {{ form.manufacturer|as_crispy_field }}
+              </div>
+              <div class="col-lg-2 col-md-3 col-sm-4" style = 'margin-top: 10px' >
+                {{ form.model|as_crispy_field }}
+              </div>
+            </div>
+            <div class="row" >
+                <div class="col-lg-2 col-md-3 col-sm-4" style = 'margin-top: 10px'>
+                  {{ form.year_of_manufacture|as_crispy_field }}
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4" style = 'margin-top: 10px'>
+                  {{ form.transmission|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-lg-2 col-md-3 col-sm-4" style = 'margin-top: 10px'>
+                  {{ form.color|as_crispy_field }}
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4" style = 'margin-top: 10px'>
+                    <br>
+                    <button type="submit" class="btn btn-secondary" style='width:172px; height:27px; margin-top: 8px; display:flex; justify-content: center; align-items:center'>Поиск</button>
+                </div>
+            </div>
+
+    </form>
+    {% endif %}
+        <br>
+
+        <h5>{{ result }}</h5>
+
+        <ul>
+        {% for key, value in filter_params.items %}
+          <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+        </ul>
+
+        {% if not no_search %}
+        <h6><a href="{% url 'cars:index'  %}">К поиску</a></h6>
+        <br>
+        {% endif %}
+
+        <div class="row  justify-content-start">
+
+            {% for car in object_list %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <h5 >{{car.manufacturer}} {{car.model}}</h1>
+                    {% if car.image %}
+                    <img height="180" width="260"
+                         src="{{ car.image.url }}" alt="" class="rounded">
+                    {% endif %}
+                <div>
+                    <h6> Трансмиссия: {{car.get_transmission_display}} </h6>
+                    <h6> Цвет: {{car.color}} </h6>
+                    <h6> Год выпуска: {{car.year_of_manufacture}} </h6>
+                    <br>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
+
